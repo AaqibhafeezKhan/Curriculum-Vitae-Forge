@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #f5f5f5;
+    transition: background-color 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+}
+
+.toolbox {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+}
+
+.section-item {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    border-radius: 4px;
+    cursor: move;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-item:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+.resume-preview {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-height: 1000px;
+}
+
+.resume-section {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid transparent;
+    position: relative;
+}
+
+.resume-section:hover {
+    border: 1px dashed #dee2e6;
+}
+
+.dragging {
+    opacity: 0.5;
+}
+
+.drag-over {
+    border: 2px dashed #6c757d;
+    background: #f8f9fa;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.button:hover {
+    background: #0056b3;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.command-palette {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: none;
+    z-index: 1000;
+}
+
+.command-palette.active {
+    display: block;
+}
+
+.command-input {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px solid #eee;
+    font-size: 1rem;
+}
+
+.command-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.theme-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+body.dark-theme {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+body.dark-theme .resume-preview,
+body.dark-theme .toolbox,
+body.dark-theme .command-palette,
+body.dark-theme .ai-suggestions {
+    background: #2d2d2d;
+    color: #fff;
+}
+
+body.dark-theme .section-item {
+    background: #3d3d3d;
+    border-color: #4d4d4d;
+}
+
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: #007bff;
+    transition: width 0.3s ease;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    display: none;
+    animation: slideUp 0.3s ease forwards;
+    z-index: 1000;
+}
+
+@keyframes slideUp {
+    from { transform: translate(-50%, 100%); }
+    to { transform: translate(-50%, 0); }
+}
+
+.section-toolbar {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    background: white;
+    padding: 0.25rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 0.25rem;
+}
+
+.resume-section:hover .section-toolbar {
+    opacity: 1;
+}
+
+.toolbar-button {
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.toolbar-button:hover {
+    color: #333;
+}
+
+.version-history {
+    position: fixed;
+    right: -300px;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    background: white;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+    padding: 1rem;
+    z-index: 900;
+}
+
+.version-history.active {
+    right: 0;
+}
+
+.ai-suggestions {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    max-width: 300px;
+    display: none;
+    z-index: 800;
+}
+
+.ai-suggestions.active {
+    display: block;
+}
